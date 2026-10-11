@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DocuMind · Local RAG Workshop</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/"><span class="brand-mark">✦</span><span>DocuMind</span><small>LOCAL RAG WORKSHOP</small></a>
+        <div class="topbar-right"><span id="connection-dot" class="status-dot"></span><span id="connection-text">Checking Ollama…</span><span class="privacy-pill">⌾ Runs on your machine</span></div>
+      </header>
+      <main class="layout">
+        <aside class="sidebar">
+          <div class="eyebrow">Workspace</div>
+          <h1>Chat with<br /><em>your documents.</em></h1>
+          <p class="intro">Upload course notes, handouts, or reports. Ask questions and get answers grounded in the text you provide.</p>
+          <section class="how-card">
+            <div class="eyebrow">How it works</div>
+            <ol><li><b>Extract</b><span>Read PDF / DOCX text</span></li><li><b>Chunk</b><span>Split into useful passages</span></li><li><b>Retrieve</b><span>Rank by cosine similarity</span></li><li><b>Generate</b><span>Ask your local Ollama LLM</span></li></ol>
+          </section>
+          <div class="sidebar-note"><span>◈</span><p><strong>Private by design</strong><br />Your files stay in this running app. No cloud API key required.</p></div>
+        </aside>
+        <section class="content">
+          <div class="content-head"><div><div class="eyebrow">Document library</div><h2>Your knowledge base</h2></div><span id="doc-count" class="count-badge">0 files</span></div>
+          <section id="dropzone" class="upload-zone"><input id="file-input" type="file" accept=".pdf,.docx" hidden /><div class="upload-icon">↑</div><h3>Drop a file here, or <button id="browse-button" class="link-button">browse</button></h3><p>PDF or DOCX · up to 20 MB</p><div id="upload-progress" class="progress-wrap" hidden><div class="progress-bar"><span></span></div><small>Reading, chunking, and embedding your document…</small></div></section>
+          <div id="message" class="message" role="alert" hidden></div>
+          <section id="documents" class="document-grid"></section>
+          <section class="chat-panel"><div class="chat-header"><div><div class="eyebrow">Grounded Q&A</div><h2>Ask your documents</h2></div><label class="top-k-label">Sources <select id="top-k"><option value="3">3</option><option value="4" selected>4</option><option value="6">6</option></select></label></div><div id="chat-log" class="chat-log"><div class="empty-chat"><span>✦</span><h3>Your answer will appear here</h3><p>Upload at least one document, then ask a question below.</p></div></div><form id="chat-form" class="chat-form"><textarea id="question" rows="1" placeholder="e.g. What are the three main conclusions?"></textarea><button id="ask-button" type="submit" aria-label="Ask question">↗</button></form><div class="grounding-note">Answers are generated only from your retrieved document passages.</div></section>
+        </section>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
